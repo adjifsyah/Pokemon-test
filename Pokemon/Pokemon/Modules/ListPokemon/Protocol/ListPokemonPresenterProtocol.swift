@@ -5,10 +5,11 @@
 //  Created by Adji Firmansyah on 08/02/23.
 //
 
-import Foundation
+
+import UIKit
 
 protocol ListPokemonPresenterProtocol: AnyObject {
-    func fetchListPokemon()
+    func fetchListPokemon(navController: UINavigationController)
     
     func getListPokemon(data: [PokemonModel])
 }

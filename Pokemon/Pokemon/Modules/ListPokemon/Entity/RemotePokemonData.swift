@@ -24,6 +24,3 @@ struct RemotePokemonData: Codable {
         case pokemonUrl = "url"
     }
 }
-
-
-

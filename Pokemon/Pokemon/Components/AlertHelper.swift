@@ -8,10 +8,12 @@
 import UIKit
 
 class AlertHelper {
-    func showGeneralAlert(message: String, navigationController: UINavigationController) {
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in })
-        alert.addAction(okAction)
-        navigationController.present(alert, animated: true)
+    private init() { }
+    static func showGeneralAlert(message: String, navigationController: UINavigationController) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "", message: message.description, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            navigationController.present(alert, animated: true, completion: nil)
+        }
     }
 }

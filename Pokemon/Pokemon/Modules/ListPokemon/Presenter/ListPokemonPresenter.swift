@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 class ListPokemonPresenter: ListPokemonPresenterProtocol {
     weak var view: ListPokemonViewProtocol?
     var interactor: ListPokemonInteractorProtocol?
     weak var router: ListPokemonRouterProtocol?
     
-    func fetchListPokemon() {
-        interactor?.fetchPokemonList()
+    func fetchListPokemon(navController navigationController: UINavigationController) {
+        interactor?.fetchPokemonList(navigationController: navigationController)
     }
     
     func getListPokemon(data: [PokemonModel]) {

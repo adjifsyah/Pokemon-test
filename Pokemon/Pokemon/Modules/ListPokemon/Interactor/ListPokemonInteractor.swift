@@ -13,13 +13,17 @@ class ListPokemonInteractor: ListPokemonInteractorProtocol {
     
     let services: URLSessionClient = URLSessionClient(urlSession: URLSession(configuration: .ephemeral))
 
-    func fetchPokemonList() {
+    func fetchPokemonList(navigationController: UINavigationController) {
+        GeneralLoading.showLoading(getNavigation: navigationController)
         services.getListPokemon(urlStr: "https://pokeapi.co/api/v2/pokemon") { result in
             switch result {
             case .success(let success):
                 self.presenter?.getListPokemon(data: success.map { $0 })
+                DispatchQueue.main.async {
+                    GeneralLoading.hideLoading(getNavigation: navigationController)
+                }
             case .failure(let failure):
-                AlertHelper().showGeneralAlert(message: failure.localizedDescription, navigationController: UINavigationController())
+                AlertHelper.showGeneralAlert(message: failure.localizedDescription, navigationController: navigationController)
             }
         }
     }

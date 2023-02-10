@@ -18,10 +18,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-
-        let pokemonVC = ListPokemonRouter.createModule()
-        window?.rootViewController = pokemonVC
+        
+        let tabBar = UITabBarController()
+        tabBar.viewControllers = [
+            createNavController(for: ListPokemonRouter.createModule(), title: "Home", image: UIImage(systemName: "house")!),
+            createNavController(for: MyPokemonRouter.createDetailModul(), title: "MyPokemon", image: UIImage(systemName: "person")!)
+        ]
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
+    }
+    
+    private func createNavController(for rootViewController: UIViewController,
+                                     title: String,
+                                     image: UIImage) -> UIViewController {
+        let navController = UINavigationController(rootViewController: rootViewController)
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = image
+        navController.navigationBar.prefersLargeTitles = true
+        rootViewController.navigationItem.title = title
+        return navController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -57,4 +72,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

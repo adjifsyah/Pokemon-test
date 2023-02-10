@@ -9,19 +9,24 @@ import UIKit
 
 class ListPokemonViewController: UIViewController {
     @IBOutlet weak var pokemonTableView: UITableView!
+    @IBOutlet weak var messageStackView: UIStackView!
     var presenter: ListPokemonPresenterProtocol?
     
     var pokemonDatasource: [PokemonModel] = []
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.fetchListPokemon()
+        presenter?.fetchListPokemon(navController: navigationController ?? UINavigationController())
         setupView()
     }
     
     private func setupView() {
+        title = "Pokemon"
         setupTableView()
-        
     }
     
     private func setupTableView() {
@@ -36,14 +41,24 @@ class ListPokemonViewController: UIViewController {
 
 extension ListPokemonViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        pokemonDatasource.count
+        messageStackView.isHidden = pokemonDatasource.isEmpty ? false : true
+        return pokemonDatasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as? ListPokemonCell else { return UITableViewCell() }
         let pokemonList = pokemonDatasource[indexPath.row]
-        cell.getPokemon(imageStr: "", name: pokemonList.name)
+        cell.getPokemon(imageStr: pokemonList.imageStr, name: pokemonList.name)
+        cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detail = DetailPokemonRouter.createDetailModul()
+        let dataPokemon = pokemonDatasource[indexPath.row]
+        detail.getId = dataPokemon.name
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(detail, animated: true)
     }
 }
 

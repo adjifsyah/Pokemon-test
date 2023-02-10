@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ListPokemonInteractorProtocol {
     var presenter: ListPokemonPresenterProtocol? { get set }
-    func fetchPokemonList()
+    
+    func fetchPokemonList(navigationController: UINavigationController)
 }
