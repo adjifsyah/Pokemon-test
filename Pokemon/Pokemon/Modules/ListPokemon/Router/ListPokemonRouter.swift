@@ -26,4 +26,10 @@ class ListPokemonRouter: ListPokemonRouterProtocol {
         
         return view
     }
+    
+    func goToDetailView(data: PokemonModel, navigationController: UINavigationController) {
+        let detail = DetailPokemonRouter.createDetailModul()
+        detail.getId = data.pokemonId
+        navigationController.pushViewController(detail, animated: true)
+    }
 }

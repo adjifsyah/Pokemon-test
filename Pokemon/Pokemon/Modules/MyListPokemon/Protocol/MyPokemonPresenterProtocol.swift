@@ -13,4 +13,6 @@ protocol MyPokemonPresenterProtocol: AnyObject {
     
     func showMyPokemon(data: [PokemonModel])
     func showSuccessRemove()
+    
+    func goToDetailView(data: PokemonModel, navigationContoller: UINavigationController)
 }

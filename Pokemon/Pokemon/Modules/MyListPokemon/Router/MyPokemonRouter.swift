@@ -5,7 +5,7 @@
 //  Created by Adji Firmansyah on 10/02/23.
 //
 
-import Foundation
+import UIKit
 
 class MyPokemonRouter: MyPokemonRouterProtocol {
     var presenter: MyPokemonPresenterProtocol?
@@ -25,5 +25,11 @@ class MyPokemonRouter: MyPokemonRouterProtocol {
         router.presenter = presenter
         
         return view
+    }
+    
+    func goToDetailView(data: PokemonModel, navigationContoller: UINavigationController) {
+        let detail = DetailPokemonRouter.createDetailModul()
+        detail.getId = data.pokemonId
+        navigationContoller.pushViewController(detail, animated: true)
     }
 }

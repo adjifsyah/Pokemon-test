@@ -12,4 +12,5 @@ protocol ListPokemonPresenterProtocol: AnyObject {
     func fetchListPokemon(navController: UINavigationController)
     
     func getListPokemon(data: [PokemonModel])
+    func goToDetailView(data: PokemonModel, navigationController: UINavigationController)
 }

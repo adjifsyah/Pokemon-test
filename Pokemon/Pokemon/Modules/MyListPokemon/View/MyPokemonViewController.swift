@@ -57,11 +57,9 @@ extension MyPokemonViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detail = DetailPokemonRouter.createDetailModul()
         let dataPokemon = myPokemonData[indexPath.row]
-        detail.getId = dataPokemon.pokemonId
+        presenter?.goToDetailView(data: dataPokemon, navigationContoller: navigationController!)
         tabBarController?.tabBar.isHidden = true
-        navigationController?.pushViewController(detail, animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

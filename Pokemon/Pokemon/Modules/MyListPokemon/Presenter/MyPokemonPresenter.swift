@@ -27,4 +27,7 @@ class MyPokemonPresenter: MyPokemonPresenterProtocol {
     func showSuccessRemove() {
         view?.showSuccessRemove()
     }
+    func goToDetailView(data: PokemonModel, navigationContoller: UINavigationController) {
+        router?.goToDetailView(data: data, navigationContoller: navigationContoller)
+    }
 }

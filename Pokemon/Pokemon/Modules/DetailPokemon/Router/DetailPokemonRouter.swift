@@ -25,4 +25,6 @@ class DetailPokemonRouter: DetailPokemonRouterProtocol {
         
         return view
     }
+    
+    
 }

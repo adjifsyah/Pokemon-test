@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class ListPokemonPresenter: ListPokemonPresenterProtocol {
-    weak var view: ListPokemonViewProtocol?
+    var view: ListPokemonViewProtocol?
     var interactor: ListPokemonInteractorProtocol?
-    weak var router: ListPokemonRouterProtocol?
+    var router: ListPokemonRouterProtocol?
     
     func fetchListPokemon(navController navigationController: UINavigationController) {
         interactor?.fetchPokemonList(navigationController: navigationController)
@@ -19,5 +19,9 @@ class ListPokemonPresenter: ListPokemonPresenterProtocol {
     
     func getListPokemon(data: [PokemonModel]) {
         view?.showPokemonList(data: data)
+    }
+    
+    func goToDetailView(data: PokemonModel, navigationController: UINavigationController) {
+        router?.goToDetailView(data: data, navigationController: navigationController)
     }
 }
