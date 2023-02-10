@@ -23,6 +23,9 @@ class ListPokemonInteractor: ListPokemonInteractorProtocol {
                     GeneralLoading.hideLoading(getNavigation: navigationController)
                 }
             case .failure(let failure):
+                DispatchQueue.main.async {
+                    navigationController.dismiss(animated: true)
+                }
                 AlertHelper.showGeneralAlert(message: failure.localizedDescription, navigationController: navigationController)
             }
         }

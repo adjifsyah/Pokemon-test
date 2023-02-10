@@ -19,4 +19,16 @@ class MyPokemonInteractor: MyPokemonInteractorProtocol {
             }
         }
     }
+    
+    func removeMyPokemon(name: String, navigationController: UINavigationController) {
+        CoreDataManager.delete(name, navigationController: navigationController) { result in
+            switch result {
+            case .success(let success):
+                self.presenter?.showSuccessRemove()
+                AlertHelper.showGeneralAlert(message: "\(success) deleted successfully", navigationController: navigationController)
+            case .failure(let err):
+                AlertHelper.showGeneralAlert(message: err.localizedDescription, navigationController: navigationController)
+            }
+        }
+    }
 }

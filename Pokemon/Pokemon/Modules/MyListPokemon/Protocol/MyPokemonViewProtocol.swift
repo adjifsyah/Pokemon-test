@@ -9,4 +9,5 @@ import Foundation
 
 protocol MyPokemonViewProtocol: AnyObject {
     func showListMyPokemon(data: [PokemonModel])
+    func showSuccessRemove()
 }

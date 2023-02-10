@@ -23,80 +23,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E0CF2D68-AE3E-4AC7-BD15-3E7A4628D227"
-            shouldBeEnabled = "No"
+            uuid = "E6E570C1-D299-45AF-9872-E2391B56C5E3"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pokemon/Modules/DetailPokemon/Interactor/DetailPokemonInteractor.swift"
+            filePath = "Pokemon/Modules/ListPokemon/Interactor/ListPokemonInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "fetchDetailPokemon(byId:navigationController:)"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "fetchPokemonList(navigationController:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8C851375-C695-448A-8567-187126B4DE4D"
+            uuid = "7972BD6D-C7F4-43C7-9D70-DC0132C86548"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pokemon/Modules/DetailPokemon/Interactor/DetailPokemonInteractor.swift"
+            filePath = "Pokemon/Modules/ListPokemon/Interactor/ListPokemonInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "saveMyPokemon(name:imageUrl:navigationController:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "fetchPokemonList(navigationController:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "90EEFC96-8AFD-44B3-87CA-CAFC79C15FA5"
+            uuid = "E7B2605A-C764-4C49-997F-DD440B824B10"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pokemon/Modules/DetailPokemon/Interactor/DetailPokemonInteractor.swift"
+            filePath = "Pokemon/Modules/MyListPokemon/Interactor/MyPokemonInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "saveMyPokemon(name:imageUrl:navigationController:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9A84F2D7-53D6-47E3-A116-376DC3635A93"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pokemon/DataManager/Local/CoreDataManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "save(pokemonName:imageUrl:navigationController:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "943FBFEA-D5F1-4E2C-BBA1-4759B2A1A602"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pokemon/DataManager/Local/CoreDataManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "save(pokemonName:imageUrl:navigationController:completion:)"
+            landmarkName = "removeMyPokemon(name:navigationController:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

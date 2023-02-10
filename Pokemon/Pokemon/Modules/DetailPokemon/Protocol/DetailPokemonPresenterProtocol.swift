@@ -8,8 +8,8 @@
 import UIKit
 
 protocol DetailPokemonPresenterProtocol: AnyObject {
-    func fetchDetailPokemon(byId: String, navigationController: UINavigationController)
-    func saveMyPokemon(name: String, imageUrl: String, navigationController: UINavigationController)
+    func fetchDetailPokemon(byId: Int, navigationController: UINavigationController)
+    func saveMyPokemon(name: String, imageUrl: String, pokeId: Int, navigationController: UINavigationController)
     
     func getDetailPokemon(data: DetailPokemonResponse)
 }

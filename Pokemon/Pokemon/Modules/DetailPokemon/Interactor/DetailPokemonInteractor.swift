@@ -11,23 +11,23 @@ class DetailPokemonInteractor: DetailPokemonInteractorProtocol {
     weak var presenter: DetailPokemonPresenterProtocol?
     
     private let services = URLSessionClient(urlSession: URLSession(configuration: .ephemeral))
-    func fetchDetailPokemon(byId: String, navigationController: UINavigationController) {
+    func fetchDetailPokemon(byId: Int, navigationController: UINavigationController) {
         GeneralLoading.showLoading(getNavigation: navigationController)
         services.getDetailPokemon(urlStr: "https://pokeapi.co/api/v2/pokemon/\(byId)") { result in
             switch result {
             case .success(let success):
-                self.presenter?.getDetailPokemon(data: success)
                 DispatchQueue.main.async {
                     GeneralLoading.hideLoading(getNavigation: navigationController)
                 }
+                self.presenter?.getDetailPokemon(data: success)
             case .failure(let failure):
                 AlertHelper.showGeneralAlert(message: failure.localizedDescription, navigationController: navigationController)
             }
         }
     }
     
-    func saveMyPokemon(name: String, imageUrl: String, navigationController: UINavigationController) {
-        CoreDataManager.save(pokemonName: name, imageUrl: imageUrl, navigationController: navigationController) { result in
+    func saveMyPokemon(name: String, imageUrl: String, pokeId: Int,navigationController: UINavigationController) {
+        CoreDataManager.save(pokemonName: name, imageUrl: imageUrl, pokeId: pokeId, navigationController: navigationController) { result in
             switch result {
             case .success(let success):
                 AlertHelper.showGeneralAlert(message: "\(success) saved successfully", navigationController: navigationController)

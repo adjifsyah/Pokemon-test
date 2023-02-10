@@ -10,10 +10,10 @@ import CoreData
 
 class CoreDataManager {
     private init() { }
-    typealias Result = Swift.Result<[PokemonModel], Error>
+    typealias ResultDefault = Swift.Result<[PokemonModel], Error>
     typealias SaveResult = Swift.Result<String, Error>
     
-    static func save(pokemonName: String, imageUrl: String, navigationController: UINavigationController,
+    static func save(pokemonName: String, imageUrl: String, pokeId: Int, navigationController: UINavigationController,
                      completion: @escaping (SaveResult) -> Void) {
         var users = [PokemonModel]()
         
@@ -28,7 +28,8 @@ class CoreDataManager {
             result.forEach{ user in
                 users.append(
                     PokemonModel(name: user.value(forKey: "pokemon_name") as? String ?? "",
-                                 imageStr: user.value(forKey: "image_url") as? String ?? ""
+                                 imageStr: user.value(forKey: "image_url") as? String ?? "",
+                                 pokemonId: user.value(forKey: "pokemon_id") as? Int ?? 0
                                 )
                 )
             }
@@ -41,6 +42,7 @@ class CoreDataManager {
             
             newHistory.setValue(pokemonName, forKey: "pokemon_name")
             newHistory.setValue(imageUrl, forKey: "image_url")
+            newHistory.setValue(pokeId, forKey: "pokemon_id")
             
             try managedContext.save()
             completion(.success(pokemonName))
@@ -50,7 +52,7 @@ class CoreDataManager {
     }
     
     // fungsi refrieve semua data
-    static func retrieve(completion: @escaping (Result) -> Void) {
+    static func retrieve(completion: @escaping (ResultDefault) -> Void) {
         var users = [PokemonModel]()
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -62,7 +64,8 @@ class CoreDataManager {
             result.forEach{ user in
                 users.append(
                     PokemonModel(name: user.value(forKey: "pokemon_name") as? String ?? "",
-                                 imageStr: user.value(forKey: "image_url") as? String ?? ""
+                                 imageStr: user.value(forKey: "image_url") as? String ?? "",
+                                 pokemonId: user.value(forKey: "pokemon_id") as? Int ?? 0
                                 )
                 )
             }
@@ -72,54 +75,21 @@ class CoreDataManager {
         }
     }
     
-    //    static func update(_ damageName:String, _ merekLaptop:String, _ tipeLaptop:String){
-    //
-    //        // referensi ke AppDelegate
-    //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-    //
-    //        // managed context
-    //        let managedContext = appDelegate.persistentContainer.viewContext
-    //
-    //        // fetch data to delete
-    //        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "User")
-    //        //           fetchRequest.predicate = NSPredicate(format: "email = %@", email)
-    //
-    //        do{
-    //            let fetch = try managedContext.fetch(fetchRequest)
-    //            let dataToUpdate = fetch[0] as! NSManagedObject
-    //            dataToUpdate.setValue(damageName, forKey: "damage_name")
-    //            dataToUpdate.setValue(merekLaptop, forKey: "merek_laptop")
-    //            dataToUpdate.setValue(tipeLaptop, forKey: "tipe_laptop")
-    //
-    //            try managedContext.save()
-    //        }catch let err{
-    //            print(err)
-    //        }
-    //
-    //    }
-    
-    // fungsi menghapus by email user
-    static func delete(_ pokemonName: String, navigationController: UINavigationController) {
-        
-        // referensi ke AppDelegate
+    static func delete(_ pokemonName: String, navigationController: UINavigationController, completion: @escaping (Result<String, Error>) -> Void) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        // managed context
         let managedContext = appDelegate.persistentContainer.viewContext
-        
-        // fetch data to delete
-        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "MyPokemon")
-        //           fetchRequest.predicate = NSPredicate()
-        fetchRequest.value(forKey: pokemonName)
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "MyPokemon")
+        fetchRequest.predicate = NSPredicate(format: "pokemon_name = %@", pokemonName)
         
         do {
             let dataToDelete = try managedContext.fetch(fetchRequest)[0] as! NSManagedObject
             managedContext.delete(dataToDelete)
             
             try managedContext.save()
-        } catch let err as NSError {
-            AlertHelper.showGeneralAlert(message: err.localizedDescription, navigationController: navigationController)
+            completion(.success(pokemonName))
+        } catch let err {
+            completion(.failure(err))
         }
-        
     }
+    
 }

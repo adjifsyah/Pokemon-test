@@ -56,7 +56,7 @@ extension ListPokemonViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = DetailPokemonRouter.createDetailModul()
         let dataPokemon = pokemonDatasource[indexPath.row]
-        detail.getId = dataPokemon.name
+        detail.getId = dataPokemon.pokemonId
         tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(detail, animated: true)
     }

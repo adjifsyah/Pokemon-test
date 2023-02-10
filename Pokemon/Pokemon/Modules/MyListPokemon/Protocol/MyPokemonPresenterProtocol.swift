@@ -9,6 +9,8 @@ import UIKit
 
 protocol MyPokemonPresenterProtocol: AnyObject {
     func getListMyPokemon(navigationController: UINavigationController)
+    func removeMyPokemon(name: String, navigationControlle: UINavigationController)
     
     func showMyPokemon(data: [PokemonModel])
+    func showSuccessRemove()
 }

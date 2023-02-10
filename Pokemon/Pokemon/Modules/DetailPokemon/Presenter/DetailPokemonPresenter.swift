@@ -12,12 +12,12 @@ class DetailPokemonPresenter: DetailPokemonPresenterProtocol {
     weak var view: DetailPokemonViewProtocol?
     weak var router: DetailPokemonRouterProtocol?
     
-    func fetchDetailPokemon(byId: String, navigationController: UINavigationController) {
+    func fetchDetailPokemon(byId: Int, navigationController: UINavigationController) {
         interactor?.fetchDetailPokemon(byId: byId, navigationController: navigationController)
     }
     
-    func saveMyPokemon(name: String, imageUrl: String, navigationController: UINavigationController) {
-        interactor?.saveMyPokemon(name: name, imageUrl: imageUrl, navigationController: navigationController)
+    func saveMyPokemon(name: String, imageUrl: String, pokeId: Int, navigationController: UINavigationController) {
+        interactor?.saveMyPokemon(name: name, imageUrl: imageUrl, pokeId: pokeId, navigationController: navigationController)
     }
     
     func getDetailPokemon(data: DetailPokemonResponse) {

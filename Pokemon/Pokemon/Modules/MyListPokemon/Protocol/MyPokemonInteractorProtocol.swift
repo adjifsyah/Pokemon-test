@@ -9,4 +9,5 @@ import UIKit
 
 protocol MyPokemonInteractorProtocol: AnyObject {
     func fetchMyPokemon(navigationController: UINavigationController)
+    func removeMyPokemon(name: String, navigationController: UINavigationController)
 }

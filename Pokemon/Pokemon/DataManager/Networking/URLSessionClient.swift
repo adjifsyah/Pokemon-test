@@ -80,7 +80,8 @@ struct ListPokemonMapper {
         let spesificMap = items.dataPokemon.map {
             PokemonModel(
                 name: $0.pokemonName,
-                imageStr: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\( $0.pokemonUrl.components(separatedBy: ["/", "."]).filter { Int($0) != nil }.first ?? "").png"
+                imageStr: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\( $0.pokemonUrl.components(separatedBy: ["/", "."]).filter { Int($0) != nil }.first ?? "").png",
+                pokemonId: Int($0.pokemonUrl.components(separatedBy: ["/", "."]).filter { Int($0) != nil }.first ?? "0") ?? 0
             )
         }
         return spesificMap
@@ -104,6 +105,7 @@ struct ListPokemonMapper {
                                     valueType: $0.valueStats)
             },
                                                 pokemonName: items.pokemonName,
+                                                pokemonId: items.pokemonId,
                                                 pokemonImage: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(items.pokemonId).png",
                                                 pokemonHeight: items.pokemonHeight,
                                                 pokemonWeight: items.pokemonWeight,
@@ -119,6 +121,7 @@ struct ListPokemonMapper {
 struct PokemonModel {
     let name: String
     let imageStr: String
+    let pokemonId: Int
 }
 
 struct RemoteSpesificPokemon: Codable {
@@ -179,6 +182,7 @@ struct DetailPokemonResponse: Codable {
     let pokemonTypes: [PokemonType]
     let pokemonStatistics: [PokemonStatistic]
     let pokemonName: String
+    let pokemonId: Int
     let pokemonImage: String
     let pokemonHeight: Int
     let pokemonWeight: Int
@@ -188,6 +192,7 @@ struct DetailPokemonResponse: Codable {
         case pokemonTypes = "types"
         case pokemonStatistics = "stats"
         case pokemonName = "name"
+        case pokemonId = "id"
         case pokemonImage
         case pokemonHeight = "height"
         case pokemonWeight = "weight"

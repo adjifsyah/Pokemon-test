@@ -33,6 +33,7 @@ class CatchPokemonVC: UIViewController {
     
     var getNameAlias: String = ""
     var getImageUrl: String = ""
+    var getId: Int = 0
     
     override func viewWillAppear(_ animated: Bool) {
         resetPopup()
