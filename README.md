@@ -1,5 +1,4 @@
 # Pokemon-test
 
+https://user-images.githubusercontent.com/65451696/218107377-b3653cd6-f2c1-482c-abe8-de9d92fc8b77.mp4
 
-
-Uploading simulator-screen-recording-iphone-13-mini-2023-02-10-at-203915_cbqxVBfo.mp4…
