@@ -29,7 +29,7 @@ class MyPokemonViewController: UIViewController {
     }
     
     private func setupView() {
-        title = "Pokemon"
+        title = "My Pokemon"
         setupTableView()
     }
     
